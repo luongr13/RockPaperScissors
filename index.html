@@ -9,7 +9,8 @@
     <h1>Rock Paper Scissors</h1>
 
     <div id="npc">
-        <p id="npc-move"></p>
+        <img src="#" alt="">
+        <!-- <p id="npc-move"></p> -->
     </div>
 
     <form>
@@ -22,9 +23,33 @@
     </form>
     <button id="play-btn">Play</button>
     <script>
+        // 0: Rock, 1: Paper, 2: Scissors
         function getNPCMove() {
             return Math.floor(Math.random() * 3);
         }
+
+
+        function displayNPCMove() {
+            let move = getNPCMove();
+            let alt;
+            if (move == 0) {
+                move = "./images/rock.jpg";
+                alt = "rock";
+            } else if (move == 1) {
+                move = "./images/paper.jpg";
+                alt = "paper";
+            } else {
+                move = "./images/scissors.jpg";
+                alt = "scissors";
+            }
+            npc_area.innerHTML = '<img src="' + move + '" alt="' + alt + '" width="200">'; 
+        }
+
+
+        const play_btn = document.getElementById("play-btn");
+        const npc_area = document.getElementById("npc");
+
+        play_btn.addEventListener("click", displayNPCMove);
     </script>
 </body>
 </html>
