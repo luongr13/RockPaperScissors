@@ -13,12 +13,16 @@
         <!-- <p id="npc-move"></p> -->
     </div>
 
+    <div id="user">
+        <h2></h2>
+    </div>
+
     <form>
         <label for="options">Move:</label>
         <select name="options" id="options">
-            <option>Rock</option>
-            <option>Paper</option>
-            <option>Scissors</option>
+            <option value="0">Rock</option>
+            <option value="1">Paper</option>
+            <option value="2">Scissors</option>
         </select>
     </form>
     <button id="play-btn">Play</button>
@@ -28,38 +32,67 @@
             return Math.floor(Math.random() * 3);
         }
 
-        function makeNPCMove() {
-            let move = getNPCMove();
+        function getUserMove() {
+            return user_choice.value;
+        }
+
+        function displayNPCMove(move) {
+            let src;
             let alt;
             if (move == 0) {
-                move = "./images/rock.jpg";
-                alt = "rock";
+                src = "./images/rock.jpg";
+                alt = "rock hand gesture";
             } else if (move == 1) {
-                move = "./images/paper.jpg";
-                alt = "paper";
+                src = "./images/paper.jpg";
+                alt = "paper hand gesture";
             } else {
-                move = "./images/scissors.jpg";
-                alt = "scissors";
+                src = "./images/scissors.jpg";
+                alt = "scissors hand gesture";
             }
+            npc_area.innerHTML = '<img src="' + src + '" alt="' + alt + '" width="200">';
+        }
 
-            return '<img src="' + move + '" alt="' + alt + '" width="200">';
+        function displayWinner(winner) {
+            let status;
+            if (winner == -1) {
+                status = "You Lost";
+            } else if (winner == 0) {
+                status = "Tie Game";
+            } else {
+                status = "You Won";
+            }
+            user_area.innerHTML = "<h2>" + status + "</h2>";
         }
 
         function playGame() {
-            npc_area.innerHTML = makeNPCMove();
+            const npc_move = getNPCMove();
+            const user_move = getUserMove();
 
-        }
+            let winner = -1;
 
-        
-        function Player(type, move, state) {
-            this.type = type;
-            this.move = move;
-            this.state = state;
+            // Tie
+            if (user_move == npc_move) {
+                winner = 0;
+            }
+
+            // Winning Conditions
+            if ((user_move == 0 && npc_move == 2) ||
+                (user_move == 1 && npc_move == 0) ||
+                (user_move == 2 && npc_move == 1)) {
+                    winner = 1;
+                }
+
+            displayNPCMove(npc_move);
+            displayWinner(winner);
         }
 
 
         const play_btn = document.getElementById("play-btn");
+        
         const npc_area = document.getElementById("npc");
+        const user_area = document.getElementById("user")
+
+        const user_choice = document.getElementById("options");
 
         play_btn.addEventListener("click", playGame);
     </script>
