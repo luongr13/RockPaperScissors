@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
@@ -10,22 +14,25 @@
 
     <div id="npc">
         <img src="#" alt="">
-        <!-- <p id="npc-move"></p> -->
     </div>
 
-    <div id="user">
-        <h2></h2>
+    <div class="container"> 
+            <div id="user">
+                <h2></h2>
+            </div>
+            <div class="drop-menu">
+                <form>
+                    <label for="options">Move:</label>
+                    <select name="options" id="options">
+                        <option value="0">Rock</option>
+                        <option value="1">Paper</option>
+                        <option value="2">Scissors</option>
+                    </select>
+                </form>
+            </div>
+            <button id="play-btn">Play</button>
     </div>
 
-    <form>
-        <label for="options">Move:</label>
-        <select name="options" id="options">
-            <option value="0">Rock</option>
-            <option value="1">Paper</option>
-            <option value="2">Scissors</option>
-        </select>
-    </form>
-    <button id="play-btn">Play</button>
     <script>
         // 0: Rock, 1: Paper, 2: Scissors
         function getNPCMove() {
@@ -49,7 +56,7 @@
                 src = "./images/scissors.jpg";
                 alt = "scissors hand gesture";
             }
-            npc_area.innerHTML = '<img src="' + src + '" alt="' + alt + '" width="200">';
+            npc_area.innerHTML = '<img src="' + src + '" alt="' + alt + '" width="500">';
         }
 
         function displayWinner(winner) {
@@ -88,7 +95,7 @@
 
 
         const play_btn = document.getElementById("play-btn");
-        
+
         const npc_area = document.getElementById("npc");
         const user_area = document.getElementById("user")
 
