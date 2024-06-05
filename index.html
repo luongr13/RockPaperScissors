@@ -29,7 +29,7 @@
         }
 
 
-        function displayNPCMove() {
+        function playGame() {
             let move = getNPCMove();
             let alt;
             if (move == 0) {
@@ -45,11 +45,15 @@
             npc_area.innerHTML = '<img src="' + move + '" alt="' + alt + '" width="200">'; 
         }
 
+        function getWinner(move) {
+
+        }
+
 
         const play_btn = document.getElementById("play-btn");
         const npc_area = document.getElementById("npc");
 
-        play_btn.addEventListener("click", displayNPCMove);
+        play_btn.addEventListener("click", playGame);
     </script>
 </body>
 </html>
