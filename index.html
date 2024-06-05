@@ -28,8 +28,7 @@
             return Math.floor(Math.random() * 3);
         }
 
-
-        function playGame() {
+        function makeNPCMove() {
             let move = getNPCMove();
             let alt;
             if (move == 0) {
@@ -42,11 +41,20 @@
                 move = "./images/scissors.jpg";
                 alt = "scissors";
             }
-            npc_area.innerHTML = '<img src="' + move + '" alt="' + alt + '" width="200">'; 
+
+            return '<img src="' + move + '" alt="' + alt + '" width="200">';
         }
 
-        function getWinner(move) {
+        function playGame() {
+            npc_area.innerHTML = makeNPCMove();
 
+        }
+
+        
+        function Player(type, move, state) {
+            this.type = type;
+            this.move = move;
+            this.state = state;
         }
 
 
